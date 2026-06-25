@@ -1,0 +1,16 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        subsets, curr_set = [], []
+        self.helper(0, nums, curr_set, subsets)
+        return subsets
+    
+    def helper(self, i:int, nums: List[int], curr_set: List[int], subsets:List[List[int]]):
+        if i >= len(nums):
+            subsets.append(curr_set.copy())
+            return
+        
+        curr_set.append(nums[i])
+        self.helper(i+1, nums, curr_set, subsets)
+        
+        curr_set.pop()
+        self.helper(i+1, nums, curr_set, subsets)
